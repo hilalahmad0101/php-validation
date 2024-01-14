@@ -3,7 +3,7 @@
     "type": "library",
     "description": "The SuperValidator Package is a powerful PHP class designed to simplify and enhance the validation of form data in web applications. It provides a flexible and extensible framework for defining validation rules and generating meaningful error messages",
     "keywords": ["php","validation","php-validation"],
-    "version": "1.0.0",
+    "version": "1.1.0",
     "require": {
         "php": "^7.4 | ^8.2"
     },
