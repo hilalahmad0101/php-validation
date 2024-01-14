@@ -1,0 +1,19 @@
+{
+    "name": "hilalahmad/supervalidator",
+    "type": "library",
+    "require": {
+        "php": "^7.4 | ^8.2"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Hilalahmad\\Supervalidator\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "hilalahmad0101",
+            "email": "stackf63@gmail.com"
+        }
+    ]
+}
