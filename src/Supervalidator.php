@@ -184,6 +184,33 @@ class SuperValidator
         return $date && $date->format($format) === $value;
     }
 
+    private function validateImage($field, $parameters)
+    {
+        $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif']; // Add more if needed
+        $maxFileSize = $parameters[0] ?? 5 * 1024 * 1024; // Default to 5 MB
+
+        if (isset($_FILES[$field]) && $_FILES[$field]['error'] === UPLOAD_ERR_OK) {
+            $fileName = $_FILES[$field]['name'];
+            $fileSize = $_FILES[$field]['size'];
+            $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+
+            // Check file extension
+            if (!in_array($fileExtension, $allowedExtensions)) {
+                return false;
+            }
+
+            // Check file size
+            if ($fileSize > $maxFileSize) {
+                return false;
+            }
+
+
+            return true;
+        }
+
+        return false;
+    }
+
     private function getErrorMessage($field, $rule, $parameters)
     {
         $customErrorMessageKey = $field . '.' . $rule;
@@ -220,6 +247,9 @@ class SuperValidator
             case 'date_format':
                 $format = $parameters[0] ?? 'Y-m-d'; // Default format if not provided
                 return ucfirst($field) . ' must be a valid date in the format ' . $format . '.';
+            case 'image':
+                return ucfirst($field) . ' must be a valid image file (JPEG, JPG, PNG, GIF) and not exceed the maximum file size of ' . $parameters[0] . ' bytes.';
+
             default:
                 return ucfirst($field) . ' validation failed for rule ' . $rule . '.';
         }

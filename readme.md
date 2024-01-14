@@ -35,7 +35,10 @@ composer require hilalahmad/supervalidator
 7. integer
 8. number
 9. date
-10. Much more with custom validation message
+10. min:length
+11. max:length
+12. image:1024px // depend on your size
+13. Much more with custom validation message
 ```
 
 ```bash
